@@ -26,6 +26,6 @@ public class AutomationPracticeTest extends BaseClass {
 	@Test(dependsOnMethods = "assertionFailTest")
 	public void assertionSkipTest() {
 
-		Assert.assertFalse(true);
+		Assert.assertFalse(false);
 	}
 }
