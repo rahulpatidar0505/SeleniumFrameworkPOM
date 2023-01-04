@@ -14,10 +14,17 @@ public class AutomationPracticeTest extends BaseClass {
 
 		PO_AutomationPractice automationPracticePO = PageFactory.initElements(driver, PO_AutomationPractice.class);
 		automationPracticePO.fillPracticeForm();
+//		Assert.assertEquals(htmlContactForm.pageTitle.getText(), "Oops! That page can’t be found.");
 	}
 
 	@Test
-	public void assertiontest() {
+	public void assertionFailTest() {
+
+		Assert.assertFalse(false);
+	}
+
+	@Test(dependsOnMethods = "assertionFailTest")
+	public void assertionSkipTest() {
 
 		Assert.assertFalse(true);
 	}

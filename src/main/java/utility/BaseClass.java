@@ -1,14 +1,10 @@
 package utility;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
-
-import javax.imageio.ImageIO;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -27,24 +23,17 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-
 import browserFactory.BrowserFactory;
 import dataProvider.ConfigDataProvider;
-import dataProvider.ExcelDataProvider;
-import ru.yandex.qatools.ashot.AShot;
-import ru.yandex.qatools.ashot.Screenshot;
-import ru.yandex.qatools.ashot.screentaker.ViewportPastingStrategy;
 
 public class BaseClass {
 
 	public static WebDriver driver;
-	public static ExcelDataProvider reader;
 	public static String randStr = RandomStringUtils.randomAlphabetic(2);
 	public String timeStamp = new SimpleDateFormat("dd_MMM_yy_HHmmss").format(Calendar.getInstance().getTime());
 
@@ -106,7 +95,7 @@ public class BaseClass {
 
 	public static void initialisation() {
 		try {
-			driver = BrowserFactory.getBrowser("Chrome");
+			driver = BrowserFactory.getBrowser();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -124,33 +113,6 @@ public class BaseClass {
 				+ System.currentTimeMillis() + ".png";
 		try {
 			FileUtils.copyFile(src, new File(destination));
-		} catch (IOException e) {
-			e.getMessage();
-		}
-		return destination;
-	}
-
-// This is for WebEventListener
-	public static void captureScreenshotAtEndOfTest() {
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String currentDir = System.getProperty("user.dir");
-
-		try {
-			FileUtils.copyFile(scrFile, new File(currentDir + "/screenshots/" + System.currentTimeMillis() + ".png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static String captureScreenshotFullPage(WebDriver driver, String screenshotName) {
-		Screenshot screenshot = new AShot().shootingStrategy(new ViewportPastingStrategy(500)).takeScreenshot(driver);
-		BufferedImage image = screenshot.getImage();
-
-		String destination = System.getProperty("user.dir") + "/Screenshots/" + screenshotName
-				+ System.currentTimeMillis() + ".png";
-
-		try {
-			ImageIO.write(image, "PNG", new File(destination));
 		} catch (IOException e) {
 			e.getMessage();
 		}

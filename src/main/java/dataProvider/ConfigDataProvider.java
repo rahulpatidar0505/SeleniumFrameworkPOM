@@ -28,20 +28,4 @@ public class ConfigDataProvider {
 		String url = pro.getProperty("url");
 		return url;
 	}
-
-	public String getChromePath() {
-		String chromePath = System.getProperty("user.dir") + "./Drivers/" + pro.getProperty("chromePath");
-		return chromePath;
-	}
-
-	public String getIEPath() {
-		String iePath = System.getProperty("user.dir") + "./Drivers/" + pro.getProperty("iePath");
-		return iePath;
-	}
-
-	public String getGechoPath() {
-		String gechoPath = System.getProperty("user.dir") + "./Drivers/" + pro.getProperty("gechoPath");
-		return gechoPath;
-	}
-
 }

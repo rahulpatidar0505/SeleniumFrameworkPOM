@@ -77,19 +77,20 @@ public class PO_AutomationPractice extends BaseClass {
 	public void fillPracticeForm() {
 		
 		sendkeys(driver, nameText, 1, "Rahul");
-		/*
-		 * clickOn(driver, radioButtonExample.get(2), 1); clickOn(driver,
-		 * checkboxExample.get(1), 1); TestUtils.selectByVisibleText(dropdownExample, 1,
-		 * "Option2"); clickOn(driver, alertButton, 1); TestUtils.acceptAlert(1);
-		 * clickOn(driver, alertButton, 1); TestUtils.dismissAlert(1);
-		 * Assert.assertTrue(showHideTextbox.isDisplayed()); clickOn(driver, hideButton,
-		 * 1); Assert.assertFalse(showHideTextbox.isDisplayed()); clickOn(driver,
-		 * showButton, 1); Assert.assertTrue(showHideTextbox.isDisplayed());
-		 * 
-		 * Actions action=new Actions(driver);
-		 * action.moveToElement(mousehoverButton).moveToElement(topLink).build().perform
-		 * ();
-		 * 
-		 */
+
+		clickOn(driver, radioButtonExample.get(2), 1);
+		clickOn(driver, checkboxExample.get(1), 1);
+		 TestUtils.selectByVisibleText(dropdownExample, 1, "Option2");
+		//		  clickOn(driver, alertButton, 1); TestUtils.acceptAlert(1);
+		//		  clickOn(driver, alertButton, 1); TestUtils.dismissAlert(1);
+		Assert.assertTrue(showHideTextbox.isDisplayed());
+		clickOn(driver, hideButton, 1);
+		Assert.assertFalse(showHideTextbox.isDisplayed());
+		clickOn(driver, showButton, 1);
+		Assert.assertTrue(showHideTextbox.isDisplayed());
+
+		Actions action=new Actions(driver);
+		action.moveToElement(mousehoverButton).moveToElement(topLink).build().perform();
+
 	}
 }

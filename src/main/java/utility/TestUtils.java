@@ -14,11 +14,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -34,47 +30,6 @@ public class TestUtils extends BaseClass {
 
 	public static long PAGE_LOAD_TIMEOUT = 100;
 	public static long IMPLICIT_WAIT = 90;
-
-	public static String TESTDATA_SHEET_PATH = "./ApplicationTestData/ApplicationData.xlsx";
-
-	static Workbook book;
-	static Sheet sheet;
-
-	public static Object[][] getTestData(String sheetName) {
-		FileInputStream file = null;
-		try {
-			file = new FileInputStream(TESTDATA_SHEET_PATH);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		try {
-			book = WorkbookFactory.create(file);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		sheet = book.getSheet(sheetName);
-		Object[][] data = new Object[sheet.getLastRowNum()][sheet.getRow(0).getLastCellNum()];
-		// System.out.println(sheet.getLastRowNum() + "--------" +
-		// sheet.getRow(0).getLastCellNum());
-		for (int i = 0; i < sheet.getLastRowNum(); i++) {
-			for (int k = 0; k < sheet.getRow(0).getLastCellNum(); k++) {
-				data[i][k] = sheet.getRow(i + 1).getCell(k).toString();
-				// System.out.println(data[i][k]);
-			}
-		}
-		return data;
-	}
-
-	/*
-	 * How to check the Broken Links and images using Selenium:
-	 ** 
-	 * For checking the broken links, you will need to do the following steps.
-	 * 
-	 * 1. Collect all the links in the web page based on "a" and "img" tags. 2. Send
-	 * HTTP request for the link and read HTTP response code. 3. Find out whether
-	 * the link is valid or broken based on HTTP response code. 4. Repeat this for
-	 * all the links captured.
-	 */
 
 	public static void getBrokenLinks() throws MalformedURLException, IOException {
 		List<WebElement> linksList = driver.findElements(By.tagName("a"));
@@ -152,41 +107,41 @@ public class TestUtils extends BaseClass {
 		}
 	}
 
-	public static void acceptAlert(int timeout) {
-		new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
-		Alert alert = driver.switchTo().alert();
-		alert.accept();
-	}
+//	public static void acceptAlert(int timeout) {
+//		new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
+//		Alert alert = driver.switchTo().alert();
+//		alert.accept();
+//	}
+//
+//	public static void dismissAlert(int timeout) {
+//		new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
+//		Alert alert = driver.switchTo().alert();
+//		alert.dismiss();
+//	}
+//
+//	public static String getTextFromAlert(int timeout) {
+//		new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
+//		Alert alert = driver.switchTo().alert();
+//		return alert.getText();
+//	}
+//
+//	public static void setTextToAlert(int timeout, String value) {
+//		new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
+//		Alert alert = driver.switchTo().alert();
+//		alert.sendKeys(value);
+//	}
 
-	public static void dismissAlert(int timeout) {
-		new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
-		Alert alert = driver.switchTo().alert();
-		alert.dismiss();
-	}
-
-	public static String getTextFromAlert(int timeout) {
-		new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
-		Alert alert = driver.switchTo().alert();
-		return alert.getText();
-	}
-
-	public static void setTextToAlert(int timeout, String value) {
-		new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
-		Alert alert = driver.switchTo().alert();
-		alert.sendKeys(value);
-	}
-
-	public static void switchToFrameByIndex(int index, int timeOut) {
-		new WebDriverWait(driver, timeOut).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(index));
-	}
-
-	public static void switchToFrameByName(String name, int timeOut) {
-		new WebDriverWait(driver, timeOut).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(name));
-	}
-
-	public static void switchToFrameByElement(WebElement element, int timeOut) {
-		new WebDriverWait(driver, timeOut).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
-	}
+//	public static void switchToFrameByIndex(int index, int timeOut) {
+//		new WebDriverWait(driver, timeOut).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(index));
+//	}
+//
+//	public static void switchToFrameByName(String name, int timeOut) {
+//		new WebDriverWait(driver, timeOut).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(name));
+//	}
+//
+//	public static void switchToFrameByElement(WebElement element, int timeOut) {
+//		new WebDriverWait(driver, timeOut).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+//	}
 
 	// in DOM type='file'
 	public static void fileUploadUsingSenkeys(WebElement element, int timeout, String FILE_NAME) {
@@ -229,17 +184,17 @@ public class TestUtils extends BaseClass {
 		crossButton.click();
 	}
 
-	public void handlePagination(int timeOut) {
-		new WebDriverWait(driver, timeOut).until(ExpectedConditions.presenceOfElementLocated(By.tagName("a")));
-		List<WebElement> elements = driver.findElements(By.tagName("a"));
-		for (int i = 0; i < elements.size(); i++) {
-			String title = elements.get(i).getAttribute("title");
-			if (title.equals("Next Page")) {
-				elements.get(i).click();
-				break;
-			}
-		}
-	}
+//	public void handlePagination(int timeOut) {
+//		new WebDriverWait(driver, timeOut).until(ExpectedConditions.presenceOfElementLocated(By.tagName("a")));
+//		List<WebElement> elements = driver.findElements(By.tagName("a"));
+//		for (int i = 0; i < elements.size(); i++) {
+//			String title = elements.get(i).getAttribute("title");
+//			if (title.equals("Next Page")) {
+//				elements.get(i).click();
+//				break;
+//			}
+//		}
+//	}
 
 	public void handlePagination(String navXpath, String nextButtonXpath, String prevButtonXpath, String lastPage) {
 		/*
