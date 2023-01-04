@@ -12,7 +12,7 @@ public class TestRunner {
 	public void test() {
 		TestNG runner = new TestNG();
 		List<String> list = new ArrayList<String>();
-		list.add("C:\\Users\\rahul.patidar\\Documents\\SeleniumFrameworkPOM\\testng.xml");
+		list.add("/Users/rahulpatidar/Documents/SeleniumFrameworkPOM/testng.xml");
 		runner.setTestSuites(list);
 		runner.run();
 	}
