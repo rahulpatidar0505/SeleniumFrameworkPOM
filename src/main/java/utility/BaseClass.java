@@ -38,7 +38,7 @@ public class BaseClass {
 	public String timeStamp = new SimpleDateFormat("dd_MMM_yy_HHmmss").format(Calendar.getInstance().getTime());
 
 	ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(
-			System.getProperty("user.dir") + "./Reports/MyReport" + "_" + randStr + "_" + timeStamp + ".html");
+			System.getProperty("user.dir") + "/Reports/MyReport" + "_" + randStr + "_" + timeStamp + ".html");
 	ExtentReports extentReports = new ExtentReports();;
 	ExtentTest test;
 
