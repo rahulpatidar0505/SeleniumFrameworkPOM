@@ -50,6 +50,7 @@ public class PO_CustomerAccount extends BaseClass {
 	List<WebElement> productColorList;
 
 	@FindBy(xpath = "//span[normalize-space()='Add to Cart']")
+	public
 	WebElement locator_addToCartButton;
 
 	@FindBy(xpath = "//a[@class='action showcart']")
@@ -58,27 +59,31 @@ public class PO_CustomerAccount extends BaseClass {
 	@FindBy(xpath = "//button[@id='top-cart-btn-checkout']")
 	WebElement locator_checkout;
 
-	@FindBy(xpath = "//span[@itemprop='name']")
-	WebElement locator_productName;
-
 	public @FindBy(xpath = "//span[normalize-space()='My Account']")
 	WebElement locator_myAccountText;
 
 	public @FindBy(xpath = "//a[normalize-space()='My Orders']")
 	WebElement locator_myOrder;
 
-	@FindBy(xpath = "//span[@data-price-type=\"finalPrice\"][contains(@xpath,\"1\")]")
-	WebElement locator_productPrice;
+	@FindBy(xpath = "//span[contains(text(),'Montana Wind Jacket')]")
+	WebElement locator_montanaProductName;
 
+	@FindBy(xpath = "//span[@itemprop='offers']//span[@class='price-label'][normalize-space()='As low as']/following-sibling::span//span[@class='price']")
+	WebElement locator_montanaProductPrice;
+
+	@FindBy(xpath = "//span[contains(text(),'Lando Gym Jacket')]")
+	WebElement locator_landoProductName;
+
+	@FindBy(xpath = "//span[@itemprop='offers']//span[@class='price-label'][normalize-space()='As low as']/following-sibling::span//span[@class='price']")
+	WebElement locator_landoProductPrice;
+
+	@FindBy(xpath = "//span[contains(text(),'Zeppelin Yoga Pant')]")
+	WebElement locator_zeppelinProductName;
+
+	@FindBy(xpath = "//span[@class='price-label'][normalize-space()='As low as']/following-sibling::span//span[@class='price']")
+	WebElement locator_zeppelinProductPrice;
 
 	Actions action=new Actions(driver);
-
-	public void verifySuccessfulLogin() {
-		TestUtils.waitForElementPresent(locator_thanksMsg, 5);
-		Assert.assertTrue(locator_thanksMsg.isDisplayed());
-		Assert.assertEquals(locator_thanksMsg.getText(), "Thank you for registering with Fake Online Clothing Store.");
-	}
-
 	public void selectJacket() {
 		action.moveToElement(locator_men).build().perform();
 		TestUtils.scrollIntoView(locator_tops, driver);
@@ -100,34 +105,48 @@ public class PO_CustomerAccount extends BaseClass {
 		}
 	}
 
-//	public Map<String, String> selectProductName(String productName) {
-//		for (WebElement product : productList) {
-//			if (product.getText().contains(productName)) {
-//				product.click();
-//				break;
-//			}
-//		}
-//		Map<String, String> map = new HashMap<>();
-//
-//		map.put(productNameText, productPriceText);
-//		return map;
-//	}
-
-	public void verifyProductAndPrice(String productName, double priceValue) {
-		String productNameText = locator_productName.getText();
-		String productPriceText = locator_productPrice.getText();
-
-		int indexOfDollarSign = productPriceText.indexOf('$');
-		String price = productPriceText.substring(indexOfDollarSign + 1);
-
-		float finalPriceValue = Float.parseFloat(price);
-
-		if (productNameText.equals(productName) && finalPriceValue == priceValue) {
-			System.out.println("Order summary is correct");
-		} else {
-			System.out.println("Order summary is incorrect");
-		}
+	public String getMontanaProductName() {
+		String productNameText = locator_montanaProductName.getText();
+		return productNameText;
 	}
+	public String getMontanaProductPrice() {
+		String productPriceText = locator_montanaProductPrice.getText();
+		return productPriceText;
+	}
+
+	public String getLandoProductName() {
+		String productNameText = locator_landoProductName.getText();
+		return productNameText;
+	}
+	public String getLandoProductPrice() {
+		String productPriceText = locator_landoProductPrice.getText();
+		return productPriceText;
+	}
+
+	public String getZeppelinProductName() {
+		String productNameText = locator_zeppelinProductName.getText();
+		return productNameText;
+	}
+	public String getZeppelinProductPrice() {
+		String productPriceText = locator_zeppelinProductPrice.getText();
+		return productPriceText;
+	}
+
+//	public void verifyProductAndPrice(String productName, String priceValue) {
+//		String productNameText = getMontanaProductName(productName);
+//		String productPriceText = getMontanaProductPrice(priceValue);
+//
+////		int indexOfDollarSign = productPriceText.indexOf('$');
+////		String price = productPriceText.substring(indexOfDollarSign + 1);
+////
+////		float finalPriceValue = Float.parseFloat(price);
+//
+//		if (productNameText.equals(productName) && productPriceText.equals(priceValue)) {
+//			System.out.println("Order summary is correct");
+//		} else {
+//			System.out.println("Order summary is incorrect");
+//		}
+//	}
 
 	public void selectProductSize(String productSize) {
 		for (WebElement size : productSizeList) {
@@ -158,10 +177,10 @@ public class PO_CustomerAccount extends BaseClass {
 		selectProductName(productName);
 		selectProductSize(productSize);
 		selectProductColor(productColor);
-		clickOn(driver, locator_addToCartButton, 2);
+//		clickOn(driver, locator_addToCartButton, 2);
 	}
-
 	public void goToCartAndCheckout(){
+		TestUtils.waitForElementPresent(locator_cartLink, 5);
 		clickOn(driver, locator_cartLink, 2);
 		clickOn(driver, locator_checkout, 2);
 	}

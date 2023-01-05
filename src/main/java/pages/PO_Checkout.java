@@ -21,39 +21,6 @@ public class PO_Checkout extends BaseClass {
 	@FindBy(xpath = "//div[@class='title']")
 	WebElement locator_orderSummary;
 
-	@FindBy(xpath = "//input[@name='firstname']")
-	WebElement locator_firstName;
-
-	@FindBy(xpath = "//input[@name='lastname']")
-	WebElement locator_lastName;
-
-	@FindBy(xpath = "//input[@name='company']")
-	WebElement locator_company;
-
-	@FindBy(xpath = "//input[@name='street[0]']")
-	WebElement locator_street_0;
-
-	@FindBy(xpath = "//input[@name='street[1]']")
-	WebElement locator_street_1;
-
-	@FindBy(xpath = "//input[@name='city']")
-	WebElement locator_city;
-
-	@FindBy(xpath = "//select[@name='region_id']")
-	WebElement locator_state;
-
-	@FindBy(xpath = "//input[@name='postcode']")
-	WebElement locator_postcode;
-
-	@FindBy(xpath = "//select[@name='country_id']")
-	WebElement locator_bottoms;
-
-	@FindBy(xpath = "//span[contains(text(),'Pants')]")
-	WebElement locator_country;
-
-	@FindBy(xpath = "//input[@name='telephone']")
-	WebElement locator_phoneNumber;
-
 	@FindBy(css = "input[value='flatrate_flatrate']")
 	WebElement locator_selectShippingMethod;
 
@@ -66,6 +33,9 @@ public class PO_Checkout extends BaseClass {
 	public @FindBy(xpath = "//span[contains(normalize-space(),'Thank you for your purchase!')]")
 	WebElement locator_thanksMsg;
 
+	public @FindBy(xpath = "//main[@id='maincontent']//p[1]")
+	WebElement locator_orderNumber;
+
 	@FindBy(xpath = "//div[@class='panel header']//button[@type='button']")
 	WebElement locator_accountPanelArrow;
 
@@ -75,12 +45,61 @@ public class PO_Checkout extends BaseClass {
 	public @FindBy(xpath = "//div[normalize-space()='Shipping Methods']")
 	WebElement locator_shippingMethod;
 
+	public @FindBy(xpath = "//div[@style='display: block;']")
+	WebElement locator_displayProductSummary;
+
+	public @FindBy(xpath = "//strong[@class='product-item-name'][contains(text(),'Montana Wind Jacket')]")
+	WebElement locator_montana_product_name;
+
+	public @FindBy(xpath = "//strong[normalize-space()='Montana Wind Jacket']/parent::div/following-sibling::div[@class='subtotal']")
+	WebElement locator_montana_product_price;
+
+	@FindBy(xpath = "//strong[@class='product-item-name'][contains(text(),'Lando Gym Jacket')]")
+	WebElement locator_landoProductName;
+
+	@FindBy(xpath = "//strong[normalize-space()='Lando Gym Jacket']/parent::div/following-sibling::div[@class='subtotal']")
+	WebElement locator_landoProductPrice;
+
+	@FindBy(xpath = "//strong[@class='product-item-name'][contains(text(),'Zeppelin Yoga Pant')]")
+	WebElement locator_zeppelinProductName;
+
+	@FindBy(xpath = "//strong[normalize-space()='Zeppelin Yoga Pant']/parent::div/following-sibling::div[@class='subtotal']")
+	WebElement locator_zeppelinProductPrice;
+
+	public String getMontanaProductName() {
+		String productNameText = locator_montana_product_name.getText();
+		return productNameText;
+	}
+	public String getMontanaProductPrice() {
+		String productPriceText = locator_montana_product_price.getText();
+		return productPriceText;
+	}
+
+	public String getLandoProductName() {
+		String productNameText = locator_landoProductName.getText();
+		return productNameText;
+	}
+	public String getLandoProductPrice() {
+		String productPriceText = locator_landoProductPrice.getText();
+		return productPriceText;
+	}
+
+	public String getZeppelinProductName() {
+		String productNameText = locator_zeppelinProductName.getText();
+		return productNameText;
+	}
+	public String getZeppelinProductPrice() {
+		String productPriceText = locator_zeppelinProductPrice.getText();
+		return productPriceText;
+	}
+
 	public void expandOrderSummary(){
+		TestUtils.waitForElementPresent(locator_placeOrderButton, 5);
 		clickOn(driver, locator_orderSummary, 2);
 	}
 
 	public void provideAddress(){
-		clickOn(driver, locator_orderSummary, 2);
+//		clickOn(driver, locator_orderSummary, 2);
 	}
 
 	public void selectShippingMethodMoveAndPlaceOrder(){
@@ -91,7 +110,15 @@ public class PO_Checkout extends BaseClass {
 	}
 
 	public void verifyPlacedOrder(){
+		TestUtils.waitForElementPresent(locator_accountPanelArrow, 5);
 		clickOn(driver, locator_accountPanelArrow, 2);
 		clickOn(driver, locator_myAccount, 2);
+	}
+	public String fetchOrderNumber(){
+		String orderNumberMessage = locator_orderNumber.getText();
+		int colonIndex = orderNumberMessage.indexOf(':');
+		String orderNumber = orderNumberMessage.substring(colonIndex + 2);
+		String finalOrderNumber = orderNumber.replace(".", "");
+		return finalOrderNumber;
 	}
 }
