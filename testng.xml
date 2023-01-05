@@ -5,7 +5,7 @@
         <classes>
 <!--            <class name="utility.TestRunner"/>-->
 <!--            <class name="utility.BaseClass"/>-->
-            <class name="tests.AutomationPracticeTest"/>
+            <class name="tests.PlaceOrderTest"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

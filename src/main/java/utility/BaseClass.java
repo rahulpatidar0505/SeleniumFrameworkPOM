@@ -5,14 +5,10 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
@@ -44,7 +40,6 @@ public class BaseClass {
 
 	@BeforeSuite
 	public void suiteSetup() {
-
 		extentSparkReporter.config().setDocumentTitle("Test Results");
 		extentSparkReporter.config().setReportName("Automation Results");
 		extentSparkReporter.config().setTheme(Theme.DARK);
@@ -69,7 +64,6 @@ public class BaseClass {
 
 	@AfterMethod
 	public void methodTeardown(ITestResult result) throws IOException, InterruptedException {
-
 		String temp = captureScreenshot(result.getName());
 		if (result.getStatus() == ITestResult.FAILURE) {
 			test.log(Status.FAIL,
@@ -100,6 +94,8 @@ public class BaseClass {
 			e.printStackTrace();
 		}
 		driver.get(ConfigDataProvider.getApplicationURL());
+		driver.manage().timeouts().pageLoadTimeout(TestUtils.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(TestUtils.IMPLICIT_WAIT, TimeUnit.SECONDS);
 	}
 
 	public static void termination() {
@@ -130,22 +126,4 @@ public class BaseClass {
 				.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 	}
-
-	public static WebElement waitForElementPresent(WebElement element, int timeout) {
-		for (int i = 0; i < timeout; i++) {
-			try {
-				new WebDriverWait(driver, Duration.ofMillis(timeout))
-						.until(ExpectedConditions.presenceOfElementLocated((By) element));
-				break;
-			} catch (Exception e) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e1) {
-					System.out.println("Waiting for element to appear on DOM");
-				}
-			}
-		}
-		return element;
-	}
-
 }
