@@ -1,20 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import utility.BaseClass;
 import utility.TestUtils;
 
-import java.time.Duration;
-import java.util.List;
-
 public class PO_Checkout extends BaseClass {
-
 	public PO_Checkout() {
 		
 	}
@@ -74,7 +65,6 @@ public class PO_Checkout extends BaseClass {
 		String productPriceText = locator_montana_product_price.getText();
 		return productPriceText;
 	}
-
 	public String getLandoProductName() {
 		String productNameText = locator_landoProductName.getText();
 		return productNameText;
@@ -83,7 +73,6 @@ public class PO_Checkout extends BaseClass {
 		String productPriceText = locator_landoProductPrice.getText();
 		return productPriceText;
 	}
-
 	public String getZeppelinProductName() {
 		String productNameText = locator_zeppelinProductName.getText();
 		return productNameText;
@@ -92,24 +81,17 @@ public class PO_Checkout extends BaseClass {
 		String productPriceText = locator_zeppelinProductPrice.getText();
 		return productPriceText;
 	}
-
 	public void expandOrderSummary(){
 		TestUtils.waitForElementPresent(locator_placeOrderButton, 5);
 		clickOn(driver, locator_orderSummary, 2);
 	}
-
-	public void provideAddress(){
-//		clickOn(driver, locator_orderSummary, 2);
-	}
-
 	public void selectShippingMethodMoveAndPlaceOrder(){
 		clickOn(driver, locator_selectShippingMethod, 2);
 		clickOn(driver, locator_nextButton, 2);
 		TestUtils.waitForElementPresent(locator_placeOrderButton, 5);
 		clickOn(driver, locator_placeOrderButton, 2);
 	}
-
-	public void verifyPlacedOrder(){
+	public void goToMyAccount(){
 		TestUtils.waitForElementPresent(locator_accountPanelArrow, 5);
 		clickOn(driver, locator_accountPanelArrow, 2);
 		clickOn(driver, locator_myAccount, 2);

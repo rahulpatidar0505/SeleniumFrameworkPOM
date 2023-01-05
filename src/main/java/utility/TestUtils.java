@@ -1,10 +1,6 @@
 package utility;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Date;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -16,23 +12,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class TestUtils extends BaseClass {
 	public static long PAGE_LOAD_TIMEOUT = 30;
 	public static long IMPLICIT_WAIT = 10;
-
-	public static String randomStringGenerator(int length, boolean useLetters, boolean useNumbers) {
-		return RandomStringUtils.random(length, useLetters, useNumbers);
-	}
-
+	public static String emailId = "test0505@gmail.com";
+	public static String password = "Test@0505";
 	public static void selectByVisibleText(WebElement element, int timeout, String visibleText) {
 		waitForElementPresent(element, timeout);
 		Select sel = new Select(element);
 		sel.selectByVisibleText(visibleText);
 	}
-
-	public static void selectByValue(WebElement element, int timeout, String value) {
-		waitForElementPresent(element, timeout);
-		Select sel = new Select(element);
-		sel.selectByValue(value);
-	}
-
 	public static WebElement waitForElementPresent(WebElement element, int timeout) {
 		for (int i = 0; i < timeout; i++) {
 			try {
@@ -49,13 +35,11 @@ public class TestUtils extends BaseClass {
 		}
 		return element;
 	}
-
 	public static void clickElementByJS(WebElement element, WebDriver driver){
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
 		js.executeScript("arguments[0].click();", element);
 
 	}
-
 	public static void scrollIntoView(WebElement element, WebDriver driver){
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
 		js.executeScript("arguments[0].scrollIntoView(true);", element);

@@ -1,18 +1,11 @@
 package pages;
 
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 import utility.BaseClass;
-import utility.TestUtils;
-
-import java.util.List;
 
 public class PO_SignIn extends BaseClass {
-
 	public PO_SignIn() {
-		
 	}
 
 	@FindBy(xpath = "//div[@class='panel header']//a[contains(text(),'Sign In')]")
@@ -36,5 +29,4 @@ public class PO_SignIn extends BaseClass {
 		sendkeys(driver, locator_password, 1, passowrd);
 		clickOn(driver, locator_signInButton, 1);
 	}
-
 }

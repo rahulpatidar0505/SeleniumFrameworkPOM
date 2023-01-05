@@ -28,65 +28,7 @@ import browserFactory.BrowserFactory;
 import dataProvider.ConfigDataProvider;
 
 public class BaseClass {
-
 	public static WebDriver driver;
-	public static String randStr = RandomStringUtils.randomAlphabetic(2);
-	public String timeStamp = new SimpleDateFormat("dd_MMM_yy_HHmmss").format(Calendar.getInstance().getTime());
-
-	ExtentSparkReporter extentSparkReporter = new ExtentSparkReporter(
-			System.getProperty("user.dir") + "/Reports/MyReport" + "_" + randStr + "_" + timeStamp + ".html");
-	ExtentReports extentReports = new ExtentReports();;
-	ExtentTest test;
-
-	@BeforeSuite
-	public void suiteSetup() {
-		extentSparkReporter.config().setDocumentTitle("Test Results");
-		extentSparkReporter.config().setReportName("Automation Results");
-		extentSparkReporter.config().setTheme(Theme.DARK);
-
-		extentReports.attachReporter(extentSparkReporter);
-		extentReports.setSystemInfo("Author", "Rahul Patidar");
-		extentReports.setSystemInfo("OS", "Windows");
-		extentReports.setSystemInfo("Host Name", "Rahul");
-		extentReports.setSystemInfo("Environment", "QA");
-	}
-
-	@BeforeTest
-	public void testSetup(ITestContext result) {
-		initialisation();
-	}
-
-	@BeforeMethod
-	public void methodSetup(ITestResult result) {
-		test = extentReports.createTest(result.getMethod().getMethodName());
-		test.log(Status.INFO, "Test started : " + result.getMethod().getMethodName());
-	}
-
-	@AfterMethod
-	public void methodTeardown(ITestResult result) throws IOException, InterruptedException {
-		String temp = captureScreenshot(result.getName());
-		if (result.getStatus() == ITestResult.FAILURE) {
-			test.log(Status.FAIL,
-					"Test Failed : "+"  "+ test.addScreenCaptureFromPath(temp));
-			test.log(Status.FAIL, result.getThrowable());
-		} else if (result.getStatus() == ITestResult.SKIP) {
-			test.log(Status.SKIP, "Test Skipped ");
-		} else if (result.getStatus() == ITestResult.SUCCESS) {
-			test.log(Status.PASS, "Test Passed : " + result.isSuccess());
-		}
-		test.log(Status.INFO, "Test Ended : " + result.getMethod().getMethodName());
-	}
-
-	@AfterTest
-	public void testTeardown() {
-		termination();
-	}
-
-	@AfterSuite
-	public void suiteTeardown() {
-		extentReports.flush();
-	}
-
 	public static void initialisation() {
 		try {
 			driver = BrowserFactory.getBrowser();

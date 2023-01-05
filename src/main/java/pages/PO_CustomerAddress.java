@@ -6,9 +6,7 @@ import utility.BaseClass;
 import utility.TestUtils;
 
 public class PO_CustomerAddress extends BaseClass {
-
 	public PO_CustomerAddress() {
-		
 	}
 	@FindBy(xpath = "//strong[normalize-space()='Address Book']")
 	WebElement locator_addressBook;
@@ -54,10 +52,6 @@ public class PO_CustomerAddress extends BaseClass {
 
 	public void editAddressDetails(String fName, String lName, String company, String pNumber, String street0, String street1,
 								   String city, String state, String postcode, String country){
-
-//		TestUtils.waitForElementPresent(locator_addressBook, 5);
-//		TestUtils.clickElementByJS(locator_addressBook, driver);
-//		clickOn(driver, locator_addressBook, 2);
 		clickOn(driver, locator_editAddress, 2);
 		sendkeys(driver, locator_firstName, 2, fName);
 		sendkeys(driver, locator_lastName, 2, lName);
@@ -66,8 +60,8 @@ public class PO_CustomerAddress extends BaseClass {
 		sendkeys(driver, locator_street_0, 2, street0);
 		sendkeys(driver, locator_street_1, 2, street1);
 		sendkeys(driver, locator_city, 2, city);
-		TestUtils.selectByValue(locator_country, 2, country);
-		TestUtils.selectByValue(locator_state, 2, state);
+		TestUtils.selectByVisibleText(locator_country, 2, country);
+		TestUtils.selectByVisibleText(locator_state, 2, state);
 		sendkeys(driver, locator_postcode, 2, postcode);
 		clickOn(driver, locator_saveAddress, 2);
 	}
