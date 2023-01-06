@@ -7,14 +7,10 @@ https://github.com/rahulpatidar0505/SeleniumFrameworkPOM
 # Local machine setup:
 1) Install following software on local(macOS):
     1) Intellij Aqua : https://www.jetbrains.com/aqua/download/#section=mac
-
 2) Git clone master branch from Git repository:
    git clone https://github.com/rahulpatidar0505/SeleniumFrameworkPOM.git
-
 3) Open project in Intellij Aqua(All dependency will be downloaded automatically).
-
-4)Precondition: Assuming user is new and Cart is empty here https://magento.softwaretestingboard.com/.
-
+4) Precondition: Assuming user is new and Cart is empty here https://magento.softwaretestingboard.com/.
 5) Trigger option: 
    1) Run test directly from Test file.
    2) Run testng.xml tile
