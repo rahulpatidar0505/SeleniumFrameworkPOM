@@ -13,10 +13,13 @@ https://github.com/rahulpatidar0505/SeleniumFrameworkPOM
 
 3) Open project in Intellij Aqua(All dependency will be downloaded automatically).
 
-4) Trigger option: 
+4)Precondition: Assuming user is new and Cart is empty here https://magento.softwaretestingboard.com/.
+
+5) Trigger option: 
    1) Run test directly from Test file.
    2) Run testng.xml tile
    3) Open terminal and run "mvn clean install"
+   4) There is TestRunner.java file created inside utility package, we can trigger this file as well when we have multiple testng.xml available.
 
 # Jenkin Setup in my Mac: 
 1) Ref : https://www.jenkins.io/download/weekly/macos/
