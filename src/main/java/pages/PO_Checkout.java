@@ -36,6 +36,9 @@ public class PO_Checkout extends BaseClass {
 	public @FindBy(xpath = "//div[normalize-space()='Shipping Methods']")
 	WebElement locator_shippingMethod;
 
+	public @FindBy(xpath = "//div[@aria-expanded='false']//strong")
+	List<WebElement> locator_productDisplayList;
+	
 	public @FindBy(xpath = "//div[@style='display: block;']")
 	WebElement locator_displayProductSummary;
 
