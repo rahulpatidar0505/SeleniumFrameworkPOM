@@ -114,10 +114,10 @@ public class PlaceOrderTest extends BaseClass {
 		test.log(Status.INFO, "Criteria 4:  Verify order summary and compare product and price");
 		TestUtils.waitForElementPresent(poCheckout.locator_shippingMethod, 5);
 		if (poCheckout.locator_productDisplayList.size() > 0) {
-+                       poCheckout.expandOrderSummary();
-+                       TestUtils.waitForElementPresent(poCheckout.locator_displayProductSummary, 5);
-+               } else {
-+                       Assert.assertTrue(poCheckout.locator_displayProductSummary.isDisplayed());
+			poCheckout.expandOrderSummary();
+			TestUtils.waitForElementPresent(poCheckout.locator_displayProductSummary, 5);
+		} else {
+			Assert.assertTrue(poCheckout.locator_displayProductSummary.isDisplayed());
 		}
 		String montanaProductNameTextFromCheckout = poCheckout.getMontanaProductName();
 		String montanaproductPriceTextFromCheckout  = poCheckout.getMontanaProductPrice();
