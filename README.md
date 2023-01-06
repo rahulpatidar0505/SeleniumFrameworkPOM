@@ -22,5 +22,5 @@ https://github.com/rahulpatidar0505/SeleniumFrameworkPOM
 2) Install : brew install jenkins
 3) Start : brew services start jenkins
 4) GoTo browser and open : http://localhost:8080/ and install necessory plugin
-5) Create New Item, select project type and configure system and select project.
+5) Create New Item, select project type and configure system and Global configuration settings(Add JDK and Maven OR directly write commands in Execute Shell Script) and select project.
 6) Trigger Build Now
