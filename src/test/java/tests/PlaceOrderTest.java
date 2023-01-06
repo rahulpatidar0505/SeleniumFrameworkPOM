@@ -31,10 +31,9 @@ public class PlaceOrderTest extends BaseClass {
 		extentSparkReporter.config().setDocumentTitle("Test Results");
 		extentSparkReporter.config().setReportName("Automation Results");
 		extentSparkReporter.config().setTheme(Theme.DARK);
-
 		extentReports.attachReporter(extentSparkReporter);
 		extentReports.setSystemInfo("Author", "Rahul Patidar");
-		extentReports.setSystemInfo("OS", "Windows");
+		extentReports.setSystemInfo("OS", "Mac");
 		extentReports.setSystemInfo("Host Name", "Rahul");
 		extentReports.setSystemInfo("Environment", "QA");
 	}
@@ -156,6 +155,7 @@ public class PlaceOrderTest extends BaseClass {
 		String current_url_new = driver.getCurrentUrl();
 		Assert.assertEquals(current_url_new, TestConstant.my_order_rul);
 
+		test.log(Status.INFO, "Compare stored order number and number present in my order table");
 		String orderNumberFromTable = poMyOrder.verifySubmittedOrder();
 		Assert.assertEquals(orderNumberFromTable, orderNumber);
 	}
