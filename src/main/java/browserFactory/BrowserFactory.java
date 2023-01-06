@@ -15,9 +15,7 @@ public class BrowserFactory {
 	public static File folder;
 
 	public static WebDriver getBrowser() throws IOException {
-
 		ConfigDataProvider config = new ConfigDataProvider();
-
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--start-maximized");
 		options.addArguments("--ignore-certificate-errors");
