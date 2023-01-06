@@ -15,20 +15,16 @@ public class PO_MyOrder extends BaseClass {
 	@FindBy(xpath = "//table[@id=\"my-orders-table\"]//tr")
 	List<WebElement> orderRowList;
 
-	public void verifySubmittedOrder(String orderNumber) {
+	public String verifySubmittedOrder() {
 		String beforeXpath="//table[@id=\"my-orders-table\"]//tr[";
 		String afterXpath="]/td[1]";
+		String text=null;
 		for (int i = 1; i <=orderRowList.size(); i++)
 		{
 			String finalXpath=beforeXpath+i+afterXpath;
-			String text=driver.findElement(By.xpath(finalXpath)).getText();
-			if (text.equalsIgnoreCase(orderNumber)) {
-				System.out.println("Order present in order table");
-				break;
-			}
-			else{
-				System.out.println("Order not present in order table");
-			}
+			text=driver.findElement(By.xpath(finalXpath)).getText();
+			break;
 		}
+		return text;
 	}
 }
