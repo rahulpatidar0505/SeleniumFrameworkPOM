@@ -6,7 +6,9 @@ https://github.com/rahulpatidar0505/SeleniumFrameworkPOM
 
 # Local machine setup:
 1) Install following software on local(macOS):
-    1) Intellij Aqua : https://www.jetbrains.com/aqua/download/#section=mac
+   1) JAVA
+   2) Maven
+   3) Intellij Aqua : https://www.jetbrains.com/aqua/download/#section=mac
 2) Git clone master branch from Git repository:
    git clone https://github.com/rahulpatidar0505/SeleniumFrameworkPOM.git
 3) Open project in Intellij Aqua(All dependency will be downloaded automatically).
