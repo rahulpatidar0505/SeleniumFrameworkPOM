@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import utility.BaseClass;
 import utility.TestUtils;
 
+import java.util.List;
+
 public class PO_Checkout extends BaseClass {
 	public PO_Checkout() {
 		
