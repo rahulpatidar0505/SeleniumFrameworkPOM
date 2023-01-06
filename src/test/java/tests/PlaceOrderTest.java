@@ -153,7 +153,8 @@ public class PlaceOrderTest extends BaseClass {
 		String current_url_new = driver.getCurrentUrl();
 		Assert.assertEquals(current_url_new, TestConstant.my_order_rul);
 
-		poMyOrder.verifySubmittedOrder(orderNumber);
+		String orderNumberFromTable = poMyOrder.verifySubmittedOrder(orderNumber);
+		Assert.assertEquals(orderNumberFromTable, orderNumber);
 	}
 	@AfterMethod
 	public void methodTeardown(ITestResult result) throws IOException, InterruptedException {
