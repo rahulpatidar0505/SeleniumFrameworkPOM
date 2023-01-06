@@ -16,6 +16,7 @@ https://github.com/rahulpatidar0505/SeleniumFrameworkPOM
    2) Run testng.xml tile
    3) Open terminal and run "mvn clean install"
    4) There is TestRunner.java file created inside utility package, we can trigger this file as well when we have multiple testng.xml available.
+   5) When you run test locally test reports and screenshot gets generated in Reports and Screenshot folder respectively and if folder is not created, it will create folder with the mentioned name.
 
 # Jenkin Setup in my Mac: 
 1) Ref : https://www.jenkins.io/download/weekly/macos/
