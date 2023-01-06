@@ -89,7 +89,8 @@ public class PO_Checkout extends BaseClass {
 		clickOn(driver, locator_selectShippingMethod, 2);
 		clickOn(driver, locator_nextButton, 2);
 		TestUtils.waitForElementPresent(locator_placeOrderButton, 5);
-		clickOn(driver, locator_placeOrderButton, 2);
+		TestUtils.clickElementByJS(locator_placeOrderButton, driver);
+
 	}
 	public void goToMyAccount(){
 		TestUtils.waitForElementPresent(locator_accountPanelArrow, 5);
