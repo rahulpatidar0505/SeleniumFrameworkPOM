@@ -41,7 +41,7 @@ public class PO_Checkout extends BaseClass {
 	public @FindBy(xpath = "//div[@aria-expanded='false']//strong")
 	List<WebElement> locator_productDisplayList;
 	
-	public @FindBy(xpath = "//div[@style='display: block;']")
+	public @FindBy(xpath = "//div[@class='content minicart-items' and @aria-hidden='false'] ")
 	WebElement locator_displayProductSummary;
 
 	public @FindBy(xpath = "//strong[@class='product-item-name'][contains(text(),'Montana Wind Jacket')]")

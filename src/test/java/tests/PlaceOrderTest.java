@@ -115,7 +115,9 @@ public class PlaceOrderTest extends BaseClass {
 		if (poCheckout.locator_productDisplayList.size() > 0) {
 			poCheckout.expandOrderSummary();
 			TestUtils.waitForElementPresent(poCheckout.locator_displayProductSummary, 5);
+			Assert.assertTrue(poCheckout.locator_displayProductSummary.isDisplayed());
 		} else {
+			TestUtils.waitForElementPresent(poCheckout.locator_displayProductSummary, 5);
 			Assert.assertTrue(poCheckout.locator_displayProductSummary.isDisplayed());
 		}
 		String montanaProductNameTextFromCheckout = poCheckout.getMontanaProductName();
